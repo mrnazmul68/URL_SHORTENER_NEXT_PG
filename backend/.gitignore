@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (খুবই গুরুত্বপূর্ণ, সিক্রেট যেন গিটহাবে না যায়)
+.env
+.env.*
+.env.local
+
+# কিন্তু example.env ফাইল গিটহাবে থাকবে
+!example.env
+!.env.example
+
+# TypeScript Build Output
+dist/
+build/
+
+# Prisma & Generated files
+/generated/prisma
+
+# Logs & Debugging
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor / IDE configuration (আপনার backend-এ .windsurf আছে)
+.windsurf/
+.vscode/
+.idea/
+
+# OS specific files
+.DS_Store
+Thumbs.db
