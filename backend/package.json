@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch server.ts"
-  },
+  "dev": "tsx watch server.ts",
+  "build": "prisma generate",
+  "start": "npx tsx server.ts"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
