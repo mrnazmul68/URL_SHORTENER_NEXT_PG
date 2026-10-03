@@ -18,7 +18,7 @@ export class UrlRepository {
     });
   }
 
-  //todo: redirect to original url
+  //todo: increament click count 
   async incrementClickCount(shortUrl: string) {
     return await prisma.url.update({
       where: {
