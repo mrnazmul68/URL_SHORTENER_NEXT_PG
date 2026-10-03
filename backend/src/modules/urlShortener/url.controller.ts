@@ -10,7 +10,7 @@ export const shortUrl = asyncHandler(async (req: Request, res: Response) => {
   const { fullUrl, customUrl } = req.body;
 
   const response = await urlService.shortUrl(fullUrl, customUrl);
-  response.shortUrl = `"https://snip.url/${response.shortUrl}"`;
+  response.shortUrl = `${process.env.FRONTEND_URL}/${response.shortUrl}`;
   return new ApiResponse(200, response, "Url shorted successfully").send(res);
 });
 
