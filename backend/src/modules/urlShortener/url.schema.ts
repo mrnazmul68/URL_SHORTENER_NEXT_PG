@@ -14,25 +14,25 @@ const fullUrlSchema = z
     }),
   );
 
-// Short URL slug
-const shortUrlSchema = z
+// Custom URL slug
+const customUrlSchema = z
   .string()
   .trim()
-  .min(3, "Short URL must be at least 3 characters")
-  .max(200, "Short URL cannot exceed 200 characters")
+  .min(3, "Custom alias must be at least 3 characters")
+  .max(200, "Custom alias cannot exceed 200 characters")
   .regex(
     /^[a-zA-Z0-9_-]+$/,
-    "Short URL can contain only letters, numbers, hyphens and underscores",
+    "Custom alias can contain only letters, numbers, hyphens and underscores",
   );
 
 // Create URL
 export const createUrlSchema = z.strictObject({
   fullUrl: fullUrlSchema,
-  shortUrl: shortUrlSchema.optional(),
+  customUrl: z.union([customUrlSchema, z.literal("")]).optional(),
+  shortUrl: z.union([customUrlSchema, z.literal("")]).optional(),
 });
 
 export type CreateUrlInput = z.output<typeof createUrlSchema>;
-
 
 // Update URL
 // export const updateUrlSchema = z

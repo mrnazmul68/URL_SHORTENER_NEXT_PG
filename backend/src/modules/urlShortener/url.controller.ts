@@ -8,7 +8,8 @@ import { env } from "@config/env.js";
 const urlService = new UrlService();
 //todo:short url
 export const shortUrl = asyncHandler(async (req: Request, res: Response) => {
-  const { fullUrl, customUrl } = req.body;
+  const { fullUrl } = req.body;
+  const customUrl = (req.body.customUrl || req.body.shortUrl || undefined) as string | undefined;
   const userId = req.user?.id;
 
   const response = await urlService.shortUrl(fullUrl, customUrl, userId);
