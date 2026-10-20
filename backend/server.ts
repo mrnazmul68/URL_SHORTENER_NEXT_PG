@@ -1,6 +1,7 @@
 import { app } from "@app";
+import { env } from "@config/env.js";
 
-const port = process.env.PORT || 3000;
+const port = env.PORT || 3000;
 
 const startServer = async () => {
   try {

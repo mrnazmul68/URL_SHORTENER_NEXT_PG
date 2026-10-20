@@ -9,11 +9,18 @@ export class UrlService {
   }
 
   //todo: short url
-  async shortUrl(fullUrl: string, customUrl?: string) {
+  async shortUrl(fullUrl: string, customUrl?: string, userId?: string) {
     if (!fullUrl) {
       throw new ApiError(400, "Url not found");
     }
+
     if (customUrl) {
+      if (userId) {
+        const urlData = await this.urlRepo.findByShortUrl(customUrl, userId);
+        if (urlData) {
+          throw new ApiError(400, "Custom short url already exists");
+        }
+      }
       const urlData = await this.urlRepo.findByShortUrl(customUrl);
       if (urlData) {
         throw new ApiError(400, "Custom short url already exists");
@@ -22,6 +29,7 @@ export class UrlService {
       return await this.urlRepo.create({
         fullUrl,
         shortUrl: customUrl,
+        user: userId ? { connect: { id: userId } } : undefined,
       });
     }
 
@@ -29,6 +37,7 @@ export class UrlService {
     return await this.urlRepo.create({
       fullUrl,
       shortUrl: randomUrl,
+      user: userId ? { connect: { id: userId } } : undefined,
     });
   }
 

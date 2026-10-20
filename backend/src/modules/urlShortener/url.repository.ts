@@ -10,15 +10,16 @@ export class UrlRepository {
   }
 
   //todo: redirect to original url
-  async findByShortUrl(shortUrl: string) {
+  async findByShortUrl(shortUrl: string, userId?: string) {
     return await prisma.url.findUnique({
       where: {
         shortUrl: shortUrl,
+        userId: userId,
       },
     });
   }
 
-  //todo: increament click count 
+  //todo: increament click count
   async incrementClickCount(shortUrl: string) {
     return await prisma.url.update({
       where: {

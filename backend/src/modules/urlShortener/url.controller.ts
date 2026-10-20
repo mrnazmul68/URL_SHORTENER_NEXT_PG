@@ -3,14 +3,16 @@ import { asyncHandler } from "@utils/asyncHandler.js";
 import type { Request, Response } from "express";
 import { UrlService } from "./url.service.js";
 import { ApiError } from "@utils/apiError.js";
+import { env } from "@config/env.js";
 
 const urlService = new UrlService();
 //todo:short url
 export const shortUrl = asyncHandler(async (req: Request, res: Response) => {
   const { fullUrl, customUrl } = req.body;
+  const userId = req.user?.id;
 
-  const response = await urlService.shortUrl(fullUrl, customUrl);
-  response.shortUrl = `${process.env.BACKEND_URL}/${response.shortUrl}`;
+  const response = await urlService.shortUrl(fullUrl, customUrl, userId);
+  response.shortUrl = `${env.FRONTEND_URL}/${response.shortUrl}`;
   return new ApiResponse(200, response, "Url shorted successfully").send(res);
 });
 

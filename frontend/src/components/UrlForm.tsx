@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Copy, Check, Link as LinkIcon, AlertCircle } from "lucide-react";
 import { shortUrl } from "@/service/urlService";
 import { handleApiError } from "@/utils/apiError";
-import { ShortUrlResponse } from "@/service/uelResponseType";
+import { ShortUrlResponse } from "@/service/urlResponseType";
 
 // import { Trash2 } from "lucide-react";
 // const recent = [
